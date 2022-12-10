@@ -1,0 +1,22 @@
+thop
+psutil
+fastapi
+uvicorn
+Jinja2
+ipython  # interactive notebook
+filterpy
+scipy>=1.4.1
+tqdm>=4.41.0
+scikit-image
+pandas>=1.1.4
+numpy>=1.18.5
+Pillow>=7.1.2
+PyYAML>=5.3.1
+seaborn>=0.11.0
+protobuf==4.21.6
+requests>=2.23.0
+matplotlib>=3.2.2
+tensorboard>=2.4.1
+opencv-python>=4.1.1
+google-cloud-storage
+-e .
