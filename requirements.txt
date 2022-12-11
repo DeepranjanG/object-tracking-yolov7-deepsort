@@ -19,4 +19,5 @@ matplotlib>=3.2.2
 tensorboard>=2.4.1
 opencv-python>=4.1.1
 google-cloud-storage
+apache-airflow==2.4.3
 -e .
