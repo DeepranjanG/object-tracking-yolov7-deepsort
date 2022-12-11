@@ -154,7 +154,7 @@ class ObjectTracking:
                 artifacts_path=self.object_tracking_config.OBJECT_TRACKING_ARTIFACTS_DIR,
                 output_path=self.object_tracking_config.DETECT_DIR)
 
-            logging.info(f"Model ingestion artifact: {object_tracking_artifacts}")
+            logging.info(f"Object tracking artifact: {object_tracking_artifacts}")
             logging.info("Exited the initiate_object_tracking method of Object tracking class")
             return object_tracking_artifacts
         except Exception as e:
