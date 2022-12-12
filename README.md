@@ -94,6 +94,24 @@ docker build -t track .
 docker run -d -p 8080:8080 <IMAGEID>
 ```
 
+4. Open docker image in interactive model
+
+```
+docker exec -ti <IMAGEID> bash
+```
+
+5. Authenticate GCloud
+
+```
+gcloud auth login
+```
+
+6. Authenticate default application
+
+```
+gcloud auth application-default login
+```
+
 👨‍💻 Tech Stack Used
 1. Python
 2. Pytorch
