@@ -74,6 +74,7 @@ class ModelLoading:
                 model = Ensemble()
                 logging.info("Loads an ensemble of models weights=[a,b,c] or a single model weights=[a] or weights=a")
                 weights = self.model_ingestion_artifacts.weights_path
+                logging.info(f"weights: {weights}")
                 ckpt = torch.load(weights, map_location=DEVICE)
                 logging.info("loaded model")
 

@@ -10,6 +10,7 @@ RUN apt-get update -y \
 RUN apt-get install apt-transport-https ca-certificates gnupg -y
 RUN apt install python3 -y
 
+
 ENV AIRFLOW_HOME="/app/airflow"
 ENV AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT=1000
 ENV AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
@@ -17,7 +18,6 @@ ENV AIRFLOW__CORE__ENABLE_XCOM_PICKLING=True
 RUN mkdir /app
 COPY . /app/
 WORKDIR /app/
-
 RUN pip3 install torch torchvision --extra-index-url https://download.pytorch.org/whl/cpu &&  \
     pip3 install -r requirements.txt
 

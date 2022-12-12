@@ -34,7 +34,7 @@ with DAG(
 
     from src.pipeline.tracking import TrackingPipeline
 
-    tracking_pipeline = TrackingPipeline
+    tracking_pipeline = TrackingPipeline()
 
 
     def model_ingestion(**kwargs):
@@ -46,8 +46,9 @@ with DAG(
     def model_loading(**kwargs):
         from src.entity.artifact_entity import ModelIngestionArtifacts
         ti = kwargs['ti']
-        model_ingestion_artifacts = ti.xcom_pull(task_ids="data_ingestion", key="model_ingestion_artifacts")
-        model_ingestion_artifacts = ModelIngestionArtifacts(*(model_ingestion_artifacts))
+        model_ingestion_artifacts = ti.xcom_pull(task_ids="model_ingestion", key="model_ingestion_artifacts")
+        model_ingestion_artifacts = ModelIngestionArtifacts(**(model_ingestion_artifacts))
+        print(model_ingestion_artifacts)
         model_loading_artifacts = tracking_pipeline.start_model_loading(
             model_ingestion_artifacts=model_ingestion_artifacts
         )
@@ -58,7 +59,7 @@ with DAG(
         from src.entity.artifact_entity import ModelLoadingArtifacts
         ti = kwargs['ti']
         model_loading_artifacts = ti.xcom_pull(task_ids="model_loading", key="model_loading_artifacts")
-        model_loading_artifacts = ModelLoadingArtifacts(*(model_loading_artifacts))
+        model_loading_artifacts = ModelLoadingArtifacts(**(model_loading_artifacts))
 
         data_transformation_artifacts = tracking_pipeline.start_data_transformation(
             model_loading_artifacts=model_loading_artifacts
@@ -69,7 +70,7 @@ with DAG(
         from src.entity.artifact_entity import DataTransformationArtifacts, ModelLoadingArtifacts
         ti = kwargs['ti']
         data_transformation_artifacts = ti.xcom_pull(task_ids="data_transformation", key="data_transformation_artifacts")
-        data_transformation_artifacts = DataTransformationArtifacts(*(data_transformation_artifacts))
+        data_transformation_artifacts = DataTransformationArtifacts(**(data_transformation_artifacts))
 
         model_loading_artifacts = ti.xcom_pull(task_ids="model_loading", key="model_loading_artifacts")
         model_loading_artifacts = ModelLoadingArtifacts(*(model_loading_artifacts))
